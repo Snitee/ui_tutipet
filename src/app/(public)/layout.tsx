@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { Box } from "@mui/material";
 
 export default function RootLayout({
   children,
@@ -10,9 +11,9 @@ export default function RootLayout({
     <> 
       <main className=" flex justify-between flex-col mt-[254px]">
         <Header/>
-        <div className="min-h-[1536px]">
-        {children}
-        </div>
+        <Box component={"div"} height={1550}>
+          {children}
+        </Box>
         <Footer/>
       </main>
 
