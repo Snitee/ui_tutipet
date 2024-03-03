@@ -15,6 +15,7 @@ import Swal from 'sweetalert2';
 import AddForm from './AddForm';
 import EditForm from './EditForm';
 
+
   interface Data {
       id: number;
       name: string;
@@ -23,6 +24,7 @@ import EditForm from './EditForm';
       price: number;
       status: boolean;
   }
+
 
   const style = {
       position: 'absolute' as 'absolute',
@@ -36,14 +38,24 @@ import EditForm from './EditForm';
       p: 4,
     };
 
-  const getAllProduct = async() => {
-      const res = await fetch('http://localhost:8080/api/v1/products');
+  export const getAllProduct = async() => {
+        const res = await fetch('http://localhost:8080/api/v1/products');
 
       if(!res.ok){
           throw new Error('Fail to fetch data');
       }
 
       return res.json();
+  }
+
+  export const getAllProductType = async() => {
+    const res = await fetch('http://localhost:8080/api/v1/types');
+
+    if(!res.ok){
+        throw new Error('Fail to fetch data');
+    }
+
+    return res.json();
   }
 
   async function deleteProduct(id: number) {
@@ -100,9 +112,18 @@ export default function ListProduct() {
         }
       };
 
-      React.useEffect(() => {
-        fetchData();
-      }, []);
+
+
+      // React.useEffect(() => {
+      //   console.log(product);
+      //   setProduct(product)
+      // }, [product]);
+
+    React.useEffect(() => {
+      fetchData();
+    }, []);
+
+
 
 
       
