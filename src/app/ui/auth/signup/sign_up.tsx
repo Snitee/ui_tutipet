@@ -38,7 +38,7 @@ export default function SignUp() {
   const router = useRouter();
 
   const handleNavigateToHome = () => {
-    router.push('/');
+    router.back();
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -65,9 +65,6 @@ export default function SignUp() {
     event.preventDefault();
   };
 
-
-  // Label for Checkbox
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   // Validation for onBlur Username
   const handleUsername = () => {
@@ -178,8 +175,8 @@ export default function SignUp() {
             name="radio-buttons-group"
           >
             <div className="pl-14 ">
-              <FormControlLabel value="female" control={<Radio />} label="Female" />
-              <FormControlLabel value="male" control={<Radio />} label="Male" />
+              <FormControlLabel value="female" control={<Radio />} label="Nữ" />
+              <FormControlLabel value="male" control={<Radio />} label="Nam" />
             </div>
           </RadioGroup>
         </FormControl>

@@ -12,8 +12,6 @@ import { Autocomplete, Box, Button, Divider, Modal, Stack, TextField, Typography
 import { Board,  Column } from '../Board';
 import { AddCircle, Delete, Edit } from '@mui/icons-material';
 import Swal from 'sweetalert2';
-import AddForm from './AddForm';
-import EditForm from './EditForm';
 
 
   interface Data {
@@ -24,7 +22,6 @@ import EditForm from './EditForm';
       price: number;
       status: boolean;
   }
-
 
   const style = {
       position: 'absolute' as 'absolute',
@@ -38,24 +35,14 @@ import EditForm from './EditForm';
       p: 4,
     };
 
-  export const getAllProduct = async() => {
-        const res = await fetch('http://localhost:8080/api/v1/products');
+  const getAllProduct = async() => {
+      const res = await fetch('http://localhost:8080/api/v1/products');
 
       if(!res.ok){
           throw new Error('Fail to fetch data');
       }
 
       return res.json();
-  }
-
-  export const getAllProductType = async() => {
-    const res = await fetch('http://localhost:8080/api/v1/types');
-
-    if(!res.ok){
-        throw new Error('Fail to fetch data');
-    }
-
-    return res.json();
   }
 
   async function deleteProduct(id: number) {
@@ -77,20 +64,18 @@ import EditForm from './EditForm';
   
   }
 
-
-
   const columns: Column[] = [
-    { id: 'id', label: 'ID', minWidth: 60, align: 'center' },
-    { id: 'name', label: 'Tên Sản Phẩm', minWidth: 250, align: 'center' },
-    { id: 'type', label: 'Loại Sản Phẩm', minWidth: 170, align: 'center' },
-    { id: 'pet', label: 'Dành Cho Pet', minWidth: 150, align: 'center' },
-    { id: 'price', label: 'Giá', minWidth: 90, align: 'center'},
+    { id: 'id', label: 'ID', minWidth: 50, align: 'center' },
+    { id: 'name', label: 'Tên  Người Nhận', minWidth: 150, align: 'center' },
+    { id: 'address', label: 'Địa Chỉ Nhận Hàng', minWidth: 200, align: 'center' },
+    { id: 'phone', label: 'Liên Hệ', minWidth: 150, align: 'center' },
+    { id: 'countProduct', label: 'Số Lượng', minWidth: 50, align: 'center' },
     { id: 'status', label: 'Trạng Thái', minWidth: 50, align: 'center' },
     { id: 'action', label: 'Sửa/Xóa', minWidth: 50, align: 'center' },
-];
+    ];
 
 
-export default function ListProduct() {
+export default function ListOrders() {
 
     const [data, setData] = React.useState<Data[]>([]);
     const [page, setPage] = React.useState(0);
@@ -103,29 +88,18 @@ export default function ListProduct() {
     const handleCloseEdit = () => setOpenEdit(false);
     const [product, setProduct] = React.useState(null);
 
-    const fetchData = async () => {
-        try {
-          const result = await getAllProduct();
-          setData(result);
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-      };
+    // const fetchData = async () => {
+    //     try {
+    //       const result = await getAllProduct();
+    //       setData(result);
+    //     } catch (error) {
+    //       console.error('Error fetching data:', error);
+    //     }
+    //   };
 
-
-
-      // React.useEffect(() => {
-      //   console.log(product);
-      //   setProduct(product)
-      // }, [product]);
-
-    React.useEffect(() => {
-      fetchData();
-    }, []);
-
-
-
-
+    //   React.useEffect(() => {
+    //     fetchData();
+    //   }, []);
       
     const deleteProductByID = (id: number) => {
         Swal.fire({
@@ -157,26 +131,10 @@ export default function ListProduct() {
       handleOpenEdit();
     };
 
-  const filterData = (v:any) => {
-      if (v) {
-          setData([v]);
-      } else {
-          fetchData();
-      }
-    };
 
   return (
     <>
-      <Modal
-        open={openAdd}
-        onClose={handleCloseAdd}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-      <Box sx={style}>
-        <AddForm eventClose={handleCloseAdd}/>
-      </Box>
-    </Modal>
+
 
     <Modal
         open={openEdit}
@@ -185,38 +143,14 @@ export default function ListProduct() {
         aria-describedby="modal-modal-description"
       >
       <Box sx={style}>
-        <EditForm eventClose={handleCloseEdit} product={product} />
       </Box>
     </Modal>
 
     <Paper sx={{ width: '100%' }}>
         <Typography gutterBottom variant='h4' component={'div'} sx={{padding: "20px"}} className='font-bold'>
-            Danh Sách Sản Phẩm
+            Danh Sách Đơn Hàng
         </Typography>
         <Divider/>
-        <Box height={10} />
-        <Stack direction="row" spacing={2} className="mx-4">
-            <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={data}
-              sx={{ width: 300 }}
-              onChange={(e, v) => filterData(v)}
-              getOptionLabel={(rows) => rows.name || ""}
-              renderInput={(params) => (
-                <TextField {...params} size="small" label="Search Products" />
-              )}
-            />
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ flexGrow: 1 }}
-            ></Typography>
-            <Button variant="contained" endIcon={<AddCircle />} className='bg-blue-500' onClick={handleOpenAdd}>
-              Add
-            </Button>
-          </Stack>
-          <Box height={25} />
         <Board columns={columns} >
         {
             Array.isArray(data) &&

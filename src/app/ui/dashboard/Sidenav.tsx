@@ -19,7 +19,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-import { Category, Dashboard, Person2Outlined, Settings, ShoppingCart } from '@mui/icons-material';
+import { CalendarMonth, Category, Dashboard, Person2Outlined, Redeem, Settings, ShoppingCart, VolunteerActivism } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import Navbar from './Navbar';
 import { useAppStore } from './appStore';
@@ -52,7 +52,6 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
@@ -90,6 +89,16 @@ const page = [
         href: '/dashboard/products'
     },
     {
+      name: 'Dịch Vụ',
+      icon: VolunteerActivism,
+      href: '/dashboard/services'
+    },
+    {
+      name: 'Chương Trình',
+      icon: Redeem,
+      href: '/dashboard/promotion'
+    },
+    {
         name: 'Thành Viên',
         icon: Person2Outlined,
         href: '/dashboard/users'
@@ -98,6 +107,11 @@ const page = [
         name: 'Đặt Hàng',
         icon: ShoppingCart,
         href: '/dashboard/orders'
+    },
+    {
+      name: 'Lịch Hẹn',
+      icon: CalendarMonth,
+      href: '/dashboard/appointments'
     },
     {
         name: 'Thiết Lập',
@@ -153,7 +167,7 @@ export default function Sidenav({
           <Divider />
           <List>
             {page.map((data, index) => (
-              <ListItem key={data.name} disablePadding sx={{ display: 'block' }} onClick={() => router.push(data.href)}>
+              <ListItem key={index} disablePadding sx={{ display: 'block' }} onClick={() => router.push(data.href)}>
                 <ListItemButton
                   sx={{
                     minHeight: 48,
