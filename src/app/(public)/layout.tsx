@@ -9,13 +9,26 @@ export default function RootLayout({
 }>) {
   return (
     <> 
-      <main className=" flex justify-between flex-col mt-[254px]">
+      <Box component={"main"} 
+        sx={{
+          marginTop: 30,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        marginBottom={5}
+      >
         <Header/>
-        <Box component={"div"} height={1550}>
-          {children}
-        </Box>
+          <Box component={"div"} sx={{
+            alignItems: "center",
+            justifyContent: "center",
+            minHeight: 600
+          }}
+
+          >
+            {children}
+          </Box>
         <Footer/>
-      </main>
+      </Box>
 
     </>
   );
