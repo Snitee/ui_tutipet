@@ -1,9 +1,10 @@
+import { Box } from '@mui/material'
 import React from 'react'
 
 export default function Footer() {
   return (
-    <div className='h-[165px] bg-yellow-700 w-full'>
+    <Box sx={{height: 200, backgroundColor: "#a16207"}}>
 
-    </div>
+    </Box>
   )
 }
