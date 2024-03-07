@@ -1,4 +1,4 @@
-import { Box, Divider, Grid, Stack, Typography } from '@mui/material'
+import { Box, Button, Divider, Grid, Paper, Stack, TextField, Typography } from '@mui/material'
 import React from 'react'
 import Image from 'next/image'
 import pet from '@/app/img/pet.png'
@@ -6,6 +6,7 @@ import dogcat from '@/app/img/dogcat.png'
 import iconsport from '@/app/img/iconsport.png'
 import house from '@/app/img/house.png'
 import shadows from '@mui/material/styles/shadows'
+import flower from '@/app/img/flower.png'
 
 export default function page() {
   return (
@@ -29,8 +30,7 @@ export default function page() {
             </Grid>
 
             <Grid item xs={4} >
-              <Box p={2} sx={{ border: '2px solid black', boxShadow: 1,borderRadius: 2,
-              '&:hover': {color: 'ButtonHighlight',backgroundColor: 'burlywood'} }}>
+              <Box p={2} sx={{ border:'2px solid black', boxShadow: 1,borderRadius: 2, '&:hover': {color: 'ButtonHighlight',backgroundColor: 'burlywood'} }}>
                 <Image src={iconsport} height={70} alt={'dang cap'} />
                 <Typography variant='h6' gutterBottom>
                   ĐẲNG CẤP
@@ -72,19 +72,62 @@ export default function page() {
           </Stack>
         </Grid>
         
-        <Box sx ={{justifyContent:  'center'}}> 
-          <form className="  bg-white w-96 border-2 p-2 border-black">
-            
-              <div className='text-align:center p-2'>
-                <h1>Đặt lịch hẹn ngay!</h1>
+
+        <Paper elevation={3}>
+          <Box sx={{p: 2, borderRadius: 2,  display: 'grid', gridTemplateColumns: { md: '1fr 1fr' }, gap: 2,}} >
+            <Stack direction="column">
+              
+              <div className='self-center'>
+              <Image src={flower} height={70} alt={'cho meo'} />
+              </div>
+              <div className ='text-center p-5'>
+                <h2 className=' text-amber-900'>CHÚNG TÔI Ở ĐÂY ĐỂ CHĂM SÓC THÚ CƯNG CỦA BẠN!</h2>
+                <h6 className='p-4'>Vui lòng điền thông tin vào biểu mẫu để đặt lịch chăm sóc cho thú cưng của bạn tại dịch vụ của TuTi's Pet.
+                Sau khi nhận được yêu cầu, nhân viên của chúng tôi sẽ liên hệ xác nhận với bạn qua điện thoại. </h6>
+                <p >CẢM ƠN BẠN ĐÃ TIN TƯỞNG VÀ SỬ DỤNG DỊCH VỤ CỦA CHÚNG TÔI.</p>
               </div>
                 
-              <Grid>
-                <input type="name" placeholder='Nhập tên của bạn' className="w-full h-10 px-4 border-2  rounded-xl " />
-              </Grid>
-  
-          </form>
-        </Box>
+              </Stack>
+              <Stack direction="row"> 
+              <form>
+
+                <Grid item xs ={12}>
+                  <Stack direction="row" spacing ={5}  padding={2} >
+                    <Grid item xs ={8}> 
+                      <TextField id="outlined-basic" label="Họ và tên" variant="outlined" fullWidth />
+                    </Grid>
+                    <Grid item xs={8} >
+                      <TextField id="outlined-basic" label="Số điện thoại" variant="outlined" fullWidth  />
+                    </Grid>
+                  </Stack>
+                </Grid>
+
+                <Grid item xs ={8}>
+                  <Stack direction="row" spacing ={5} justifyContent={"flex-end"} padding={2}> 
+                    <input type="date" placeholder='Ngay' className="w-full h-10 px-4 border-2 "  />
+                    <input type="time" placeholder='Gio' className="w-full h-10 px-4 border-2 "/>   
+                  </Stack>
+                </Grid>
+                <Grid item xs ={8}>
+                  <Stack direction="row" spacing ={5} justifyContent={"flex-start"} padding={2}> 
+                    <TextField id="multiline" label="Ghi chú" multiline maxRows={4}/>
+                  </Stack>
+                </Grid>
+                
+                <Grid item xs ={8}>
+                  <Stack direction="row" spacing ={2} justifyContent={"flex-end"}> 
+                    <Button variant="contained" color="success">ĐẶT HẸN NGAY</Button>
+                  </Stack>
+                </Grid>
+              </form>
+              </Stack>
+          </Box>
+
+        </Paper>
+       
+
+
       </Box>
+      
   )
 }

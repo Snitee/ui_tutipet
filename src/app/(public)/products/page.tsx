@@ -52,7 +52,7 @@ export default function page() {
             <div className='w-full mb-2 p-2 bg-white flex justify-center items-center'>
           
               <form className="bg-white w-[50%] border-2  rounded-xl p-2 border-black opacity-40">
-                  {/* <input "type="search placeholder='Search' className="w-full h-10 px-4 border-2  rounded-xl focus:shadow-xl" /> */}
+                  {/* <input type="search" placeholder='Search' className="w-full h-10 px-4 border-2  rounded-xl focus:shadow-xl" /> */}
                   {/* <Autocomplete
                     freeSolo
                     id="free"
