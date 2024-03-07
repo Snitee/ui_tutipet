@@ -5,14 +5,13 @@ import pet from '@/app/img/pet.png'
 import dogcat from '@/app/img/dogcat.png'
 import iconsport from '@/app/img/iconsport.png'
 import house from '@/app/img/house.png'
+
 import shadows from '@mui/material/styles/shadows'
 import flower from '@/app/img/flower.png'
 
 export default function page() {
   return (
-  
       <Box sx={{ padding: 3}}>
-        
         <Grid container>
           <Stack direction="row" spacing={2}>
             <Grid item xs={4}>

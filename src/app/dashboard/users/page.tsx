@@ -1,4 +1,4 @@
-import ListUsers from '@/app/ui/dashboard/users/ListUsers'
+import ListUsers from '@/components/ui/admin/users/ListUsers'
 import React from 'react'
 
 export default function page() {

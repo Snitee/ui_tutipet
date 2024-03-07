@@ -1,18 +1,53 @@
 'use client'
-import Logo from '@/app/ui/logo'
-import NavLinks from '@/app/ui/nav-links'
-import ShoppingCartButton from '@/app/ui/shopping_cart'
-import { Button } from '@mui/material'
+import Logo from '@/components/logo'
+import NavLinks from '@/components/nav-links'
+import ShoppingCartButton from '@/components/shopping_cart'
+import { AccountBox, FileCopy, ListAlt, Person, Print, Save, Share, Visibility } from '@mui/icons-material'
+import { Backdrop, Box, Button, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
-export default function Header() {
+const actions = [
+  { icon: <AccountBox />, name: 'Thông tin Account',href: "user/profile" },
+  { icon: <ListAlt />, name: 'Danh Sách Đơn Hàng', href: "/list_order" },
+  { icon: <Visibility />, name: 'View Admin', href: "/dashboard" },
+];
 
+export default function Header() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cartItems, setCartItems] = useState(0);
   const router = useRouter();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const handleNavigate = (href: any) => {
+    router.push(href)
+  }
+
+
+  function getCookie(name: string): string | undefined {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop()?.split(';').shift()?.trim();
+  }  
+
+  React.useEffect(() => {
+    const token = getCookie('AuthToken'); 
+    
+    setIsLoggedIn(!!token); 
+  }, []);
+
+  console.log(isLoggedIn)
+
   const handleNavigateToSignUp = () => {
-    router.push('/login');
+    if (isLoggedIn) {
+      document.cookie = 'AuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      router.push('/login');
+    } else {
+      router.push('/login');
+    }
   };
 
   return (
@@ -33,7 +68,7 @@ export default function Header() {
             <div className='px-2 flex items-end'>
               <Button onClick={handleNavigateToSignUp} className='p-4 bg-[#CA9D7C] rounded-xl hover:bg-[#B45F30]'>
                 <span className='capitalize font-bold text-white'>
-                  đăng nhập
+                  {isLoggedIn ? 'đăng xuất' : 'đăng nhập'}
                 </span>
               </Button>
             </div>
@@ -45,7 +80,40 @@ export default function Header() {
           <NavLinks />
         </div>
       </header>
+      {
+        isLoggedIn && (
+          <Box>
+            <SpeedDial
+              ariaLabel="SpeedDial controlled open example"
+              sx={{
+                position: 'fixed',
+                bottom: 16,
+                right: 16,
+                zIndex: 11,
+              }}
+              icon={
+                <div style={{ backgroundColor: '#FC9C55', borderRadius: '50%', width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
+                    <Person />
+                </div>}
+              onClose={handleClose}
+              onOpen={handleOpen}
+              open={open}
+            >
+              {actions.map((action) => (
+                <SpeedDialAction
+                  key={action.name}
+                  icon={action.icon}
+                  tooltipTitle={action.name}
+                  onClick={() => handleNavigate(action.href)}
+                />
+              ))}
+            </SpeedDial>
+          </Box>
+          
+        )
+      }
       
+
     </>
   )
 }
