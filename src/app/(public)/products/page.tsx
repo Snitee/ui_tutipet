@@ -22,7 +22,7 @@ export default function page() {
 
           <div className='p-2'>
             <ul className='menu'>
-              <li className='flex flex-row p-2 item-center hover:border-b hover:shadow-sm hover:border-orange-300 mb-2 '>
+              <li className='flex flex-row p-2 item-center hover:border-b hover:shadow-sm hover:border-yellow-500 mb-2 '>
                 <svg className="h-12 w-12 text-yellow-400"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor" >  
                   <path d="M10.77 2.394c.416-.3.9-.394 1.23-.394h1.446a2.5 2.5 0 0 1 1.286.356l1.783 1.07a1 1 0 0 
                   1 .485.857V5.5A1.5 1.5 0 0 1 15.5 7H15v8.038c.421.065.843.222 1.195.515c.51.424.805 1.077.805 1.947a.5.5 0 0 1-.5.5H5a3 
@@ -34,7 +34,7 @@ export default function page() {
       
               </li>
 
-              <li className='flex flex-row p-2 item-center mb-2'>
+              <li className='flex flex-row p-2 hover:border-b hover:shadow-sm hover:border-yellow-500 item-center mb-2'>
                 <svg className="h-10 w-10 text-yellow-400"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  strokeWidth="2"   >  
                   <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 
                   5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 
@@ -52,7 +52,7 @@ export default function page() {
             <div className='w-full mb-2 p-2 bg-white flex justify-center items-center'>
           
               <form className="bg-white w-[50%] border-2  rounded-xl p-2 border-black opacity-40">
-                  {/* <input type="search" placeholder='Search' className="w-full h-10 px-4 border-2  rounded-xl focus:shadow-xl" /> */}
+                  {/* <input "type="search placeholder='Search' className="w-full h-10 px-4 border-2  rounded-xl focus:shadow-xl" /> */}
                   {/* <Autocomplete
                     freeSolo
                     id="free"

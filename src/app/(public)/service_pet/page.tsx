@@ -10,7 +10,7 @@ import shadows from '@mui/material/styles/shadows'
 export default function page() {
   return (
   
-      <Box sx={{ justifyContent:'center', padding: 3}}>
+      <Box sx={{ padding: 3}}>
         
         <Grid container>
           <Stack direction="row" spacing={2}>
@@ -29,7 +29,8 @@ export default function page() {
             </Grid>
 
             <Grid item xs={4} >
-              <Box p={2} sx={{ border: '2px solid black' }}>
+              <Box p={2} sx={{ border: '2px solid black', boxShadow: 1,borderRadius: 2,
+              '&:hover': {color: 'ButtonHighlight',backgroundColor: 'burlywood'} }}>
                 <Image src={iconsport} height={70} alt={'dang cap'} />
                 <Typography variant='h6' gutterBottom>
                   ĐẲNG CẤP
@@ -42,7 +43,8 @@ export default function page() {
             </Grid>
     
             <Grid item xs={4}>
-              <Box p={2} sx={{ border: '2px solid black', '&:hover':{bgcolor: '#9ca3af'}}}>
+              <Box p={2} sx={{ border: '2px solid black', boxShadow: 1,borderRadius: 2,
+              '&:hover': {color: 'ButtonHighlight',backgroundColor: 'burlywood'}}}>
                 <Image src={pet} height={70} alt={'shop'} />
                   <Typography variant='h6' gutterBottom>
                     SHOP
@@ -55,10 +57,11 @@ export default function page() {
             </Grid>
             
             <Grid item xs={4}>
-              <Box p={2} sx={{ border: '2px solid black' }}>
+              <Box p={2} sx={{ border: '2px solid black', boxShadow: 1,borderRadius: 2,
+              '&:hover': {color: 'ButtonHighlight',backgroundColor: 'burlywood'} }}>
                 <Image src={house} height={70} alt={'shop'} />
-                <Typography variant='h6' gutterBottom>
-                  NGHI DUONG
+                <Typography variant='h6' gutterBottom>  
+                  NGHỈ DƯỠNG
                 </Typography>
                 <Typography variant='h6' gutterBottom>
                 Mọi hành động ở PET SERVICE đều bắt đầu từ sứ mệnh Trao Gửi Yêu Thương. 
@@ -69,6 +72,19 @@ export default function page() {
           </Stack>
         </Grid>
         
+        <Box sx ={{justifyContent:  'center'}}> 
+          <form className="  bg-white w-96 border-2 p-2 border-black">
+            
+              <div className='text-align:center p-2'>
+                <h1>Đặt lịch hẹn ngay!</h1>
+              </div>
+                
+              <Grid>
+                <input type="name" placeholder='Nhập tên của bạn' className="w-full h-10 px-4 border-2  rounded-xl " />
+              </Grid>
+  
+          </form>
+        </Box>
       </Box>
   )
 }

@@ -9,21 +9,21 @@ import shadows from '@mui/material/styles/shadows'
 export default function page() {
   return (
     <>
-    <Box component={'div'} sx={{ justifyContent:  'center', flexGrow: 1 , padding: 3, boxShadow: 2}}>
-        <Grid container >
+    <Box component={'div'} sx={{ justifyContent:  'center', padding: 3, boxShadow: 1}}>
+        <Grid  container justifyContent=  'center'>
             <Grid item xs ={4}>
             <Image src={cat} height={250} alt={'meo xinh'} />
             </Grid>
-            <Grid item xs ={8}>
+            <Grid item xs ={4}>
                 <Grid container>
-                    <Grid item xs ={12}>
+                    <Grid item xs ={8}>
                         <Typography variant='h3' gutterBottom>
                             Ten san pham
                         </Typography>
                         <Divider />
                         <Box height={10} />
                     </Grid>
-                    <Grid item xs ={12}>
+                    <Grid item xs ={12 }>
                         <Stack direction="row" spacing ={1} justifyContent={"flex-end"}>
                             <Typography variant='h4' gutterBottom>
                                Gia 
@@ -36,7 +36,7 @@ export default function page() {
                     <Grid item xs ={12}>
                         <Grid container justifyContent={"space-between"} >
                    
-                            <Grid item xs = {4}>
+                            <Grid item xs = {6}>
                                 <Typography variant='h3' align='center' >
                                     <Button variant='outlined' type='button' className='border border-yellow-700 hover:bg-gray-100 text-yellow-700'  fullWidth >
                                         Them vao gio hang
@@ -54,14 +54,6 @@ export default function page() {
                         </Grid>
                     </Grid>
                 </Grid>
-
-                <div>
-                    <h4></h4>
-                    <h5></h5>
-                </div>
-                <div>
-
-                </div>
             </Grid>
         </Grid>
     </Box>
