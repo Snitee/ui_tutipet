@@ -7,10 +7,12 @@ import iconsport from '@/app/img/iconsport.png'
 import house from '@/app/img/house.png'
 import flower from '@/app/img/flower.png'
 
+import shadows from '@mui/material/styles/shadows'
+import flower from '@/app/img/flower.png'
+
 export default function page() {
   return (
-  
-      <Box sx={{ justifyContent:'center', padding: 3}}>
+      <Box sx={{ padding: 3}}>
         <Grid container>
           <Stack direction="row" spacing={2}>
             <Grid item xs={4}>
@@ -28,7 +30,7 @@ export default function page() {
             </Grid>
 
             <Grid item xs={4} >
-              <Box p={2} sx={{ border: '2px solid black' }}>
+              <Box p={2} sx={{ border:'2px solid black', boxShadow: 1,borderRadius: 2, '&:hover': {color: 'ButtonHighlight',backgroundColor: 'burlywood'} }}>
                 <Image src={iconsport} height={70} alt={'dang cap'} />
                 <Typography variant='h6' gutterBottom>
                   ĐẲNG CẤP
@@ -41,7 +43,8 @@ export default function page() {
             </Grid>
     
             <Grid item xs={4}>
-              <Box p={2} sx={{ border: '2px solid black', '&:hover':{bgcolor: '#9ca3af'}}}>
+              <Box p={2} sx={{ border: '2px solid black', boxShadow: 1,borderRadius: 2,
+              '&:hover': {color: 'ButtonHighlight',backgroundColor: 'burlywood'}}}>
                 <Image src={pet} height={70} alt={'shop'} />
                   <Typography variant='h6' gutterBottom>
                     SHOP
@@ -54,10 +57,11 @@ export default function page() {
             </Grid>
             
             <Grid item xs={4}>
-              <Box p={2} sx={{ border: '2px solid black' }}>
+              <Box p={2} sx={{ border: '2px solid black', boxShadow: 1,borderRadius: 2,
+              '&:hover': {color: 'ButtonHighlight',backgroundColor: 'burlywood'} }}>
                 <Image src={house} height={70} alt={'shop'} />
-                <Typography variant='h6' gutterBottom>
-                  NGHI DUONG
+                <Typography variant='h6' gutterBottom>  
+                  NGHỈ DƯỠNG
                 </Typography>
                 <Typography variant='h6' gutterBottom>
                 Mọi hành động ở PET SERVICE đều bắt đầu từ sứ mệnh Trao Gửi Yêu Thương. 
@@ -120,5 +124,6 @@ export default function page() {
         </Paper>
        
       </Box>
+      
   )
 }

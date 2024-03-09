@@ -5,26 +5,32 @@ import CardProduct from './CardProduct';
 import { Box, Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import { Search } from '@mui/icons-material';
 import SearchBar from './SearchBar';
+import axios from 'axios';
 
 export default function ListProduct() {
-    const [data, setData] = React.useState([]);
+    const [products, setProducts] = React.useState([]);
 
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:8080/api/v1/products');
-        if (response.ok) {
-          const data = await response.json();
-          console.log('Data from API:', data._embedded.productResList);
-          setData(data._embedded.productResList);
-        } else {
-          console.error('Error fetching data. Server returned:', response.status);
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
+
+
+    const getListProduct = async() =>{
+      try{
+        const res = await axios.get(`http://localhost:8080/api/v1/products`)
+
+        console.log("products: ", res)
+        return res.data
+      }catch(error){
+        console.error("error",error)
       }
-    };
+    }
 
     React.useEffect(() => {
+      const fetchData = async () => {
+        const result = await getListProduct();
+        if(result){
+          setProducts(result._embedded.productResList);
+        }
+        
+      };
       fetchData();
     }, []);
 
@@ -35,7 +41,7 @@ export default function ListProduct() {
       </Grid>
       <Grid item xs={12} sx={{ height: "100%"}}>
         <Grid container spacing={2}>
-          {data?.map((row: any) => (
+          {products?.map((row: any) => (
             <Grid item xs={3} key={row.id}>
               <CardProduct data={row} />
             </Grid>
