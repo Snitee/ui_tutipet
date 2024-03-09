@@ -1,18 +1,10 @@
 "use client"
 import { ArrowBackIos, ArrowForwardIos, ExpandLess, ExpandMore, StarBorder } from '@mui/icons-material';
 import { Box, Collapse, Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Paper, Typography } from '@mui/material'
+import axios from 'axios';
 import React from 'react'
 
-async function getData(url: any) {
-    const response = await fetch(url, {
-      method: "GET", 
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
 
-    return response.json();
-  }
 
 export default function Navbar() {
     const [openCat, setOpenCat] = React.useState(false);
@@ -31,23 +23,34 @@ export default function Navbar() {
         setOpenDog(false)
     };
 
-
+    const getProductTypes = async() =>{
+        try{
+          const res = await axios.get(`http://localhost:8080/api/v1/types`)
+  
+          console.log("types: ", res)
+          return res.data
+        }catch(error){
+          console.error("error",error)
+        }
+      }
 
     React.useEffect(() => {
 
-        const loadData = async () => {
-            const response = await getData("http://localhost:8080/api/v1/types");
+        const fetchData = async () => {
+            const result = await getProductTypes();
+            if(result){
+                const data = result._embedded.productTypeResList;
+                
+                const catData = data.filter((item: any) => item.petType == "CAT");
+                setTypeCat(catData)
 
-            const data = response._embedded.productTypeResList;
+                
+                const dogData = data.filter((item: any) => item.petType == "DOG");
+                setTypeDog(dogData);
+            }
             
-            const catData = data.filter((item: any) => item.petType === "CAT");
-            setTypeCat(catData)
-
-            const dogData = data.filter((item: any) => item.petType === "DOG");
-            setTypeDog(dogData);
-        };
-    
-        loadData();
+          };
+          fetchData();
     }, [])
 
 
