@@ -1,20 +1,18 @@
 import ListCart from '@/components/ui/public/shopping_cart/ListCart'
-import { Box, Button, Stack, Typography } from '@mui/material'
+import TitleCard from '@/components/ui/public/shopping_cart/TitleCard'
+import { Title } from '@mui/icons-material'
+import { Box, Button, Checkbox, Divider, Paper, Stack, Typography } from '@mui/material'
 import React from 'react'
 
 export default function page() {
   // const [numberCart, setNumberCart] = React.useState();
 
 
-
-
   return (
     <Box paddingRight={15} paddingLeft={15} paddingTop={3} >
-      <ListCart />
-      <Box>
-
-      </Box>
-
+      <TitleCard />
+    <Box>
     </Box>
+  </Box>
   )
 }

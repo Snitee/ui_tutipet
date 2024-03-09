@@ -42,51 +42,82 @@ export default function SignUp() {
 
     const handleNavigateToHome = () => {
         router.push('/');
-      };
+    };
 
-
-    // const createCart = () => {
-    //   const 
-    // }
+    const postRegister = async(data: any) =>{
+      axios.post('http://localhost:8080/api/v1/auth/register',
+        {
+          fullName: data.get('fullName'),
+          email: data.get('email'),
+          password: data.get('password'),
+          confirmPassword: data.get('confirmPassword'),
+          gender : data.get('gender') == 0 ? false : true
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          }
+        })
+        .then(response => {
+          document.cookie = `AuthToken=${response.data.token}; path=/; max-age=3600; Secure; SameSite=Strict`;
+          router.push('/');
+        })
+        .catch(error => {
+          if (error.response) {
+            const messenge = error.response.data.message;
+            setFormValid(messenge.split(", ")[0]);
+            console.error('Server Error:', error.response.status);
+            console.error('Error Data:', error.response.data);
+          } else if (error.request) {
+            console.error('No response received');
+          } else {
+            console.error('Error setting up the request:', error.message);
+          }
+        });
+      // try{
+      //   const res = await axios.post(`http://localhost:8080/api/v1/auth/register`,)
+        
+      //   console.log("register: ", res)
+      //   if(res.status === 201){
+      //     document.cookie = `AuthToken=${res.data.token}; path=/; max-age=3600; Secure; SameSite=Strict`;
+      //     router.push('/');
+      //   }
+      //   setFormValid(res.data.message)
+      // }catch(error){
+      //   console.error("error",error)
+      // }
+    }
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const dataForm = new FormData(event.currentTarget);
 
-        const data = {
-          fullName: dataForm.get('fullName'),
-          email: dataForm.get('email'),
-          password: dataForm.get('password'),
-          confirmPassword: dataForm.get('confirmPassword'),
-          gender : dataForm.get('gender') == '0' ? true : false
-        }
+        // fetch('http://localhost:8080/api/v1/auth/register', {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify(data),
+        // })
+        // .then(response => {
+        //   console.log(response);
+          // if (response.ok) {
+          //   // throw new Error(`HTTP error! Status: ${response.status}`);
+          //   
+          //   return;
+          // }
 
-        console.log(data)
+        //   return response.json();
+        // })
+        // .then(data => {
+        //   console.log('API Response:', data);
+        //   
+        // })
+        // .catch(error => {
+        //   console.error('Error posting data:', error);  
+        // });
 
-        fetch('http://localhost:8080/api/v1/auth/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        })
-        .then(response => {
-          console.log(response);
-          if (response.ok) {
-            // throw new Error(`HTTP error! Status: ${response.status}`);
-            router.push('/login');
-            return;
-          }
-
-          return response.json();
-        })
-        .then(data => {
-          console.log('API Response:', data);
-          setFormValid(data.message)
-        })
-        .catch(error => {
-          console.error('Error posting data:', error);  
-        });
+        console.log("sucess",postRegister(dataForm));
 
 
     };
@@ -200,7 +231,7 @@ export default function SignUp() {
                     <FormLabel id="demo-radio-buttons-group-label" className='font-semibold' >Gender:</FormLabel>
                     <RadioGroup
                         aria-labelledby="demo-radio-buttons-group-label"
-                        defaultValue="0"
+                        defaultValue={0}
                         name="gender"
                         className='ml-20'
                         row

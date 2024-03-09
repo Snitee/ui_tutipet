@@ -4,7 +4,6 @@ import NavLinks from '@/components/nav-links'
 import ShoppingCartButton from '@/components/shopping_cart'
 import { AccountBox, FileCopy, ListAlt, Person, Print, Save, Share, Visibility } from '@mui/icons-material'
 import { Backdrop, Box, Button, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material'
-import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 
@@ -15,9 +14,9 @@ const actions = [
 ];
 
 export default function Header() {
+  const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [cartItems, setCartItems] = useState(0);
-  const router = useRouter();
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -39,12 +38,11 @@ export default function Header() {
     setIsLoggedIn(!!token); 
   }, []);
 
-  console.log(isLoggedIn)
 
   const handleNavigateToSignUp = () => {
     if (isLoggedIn) {
       document.cookie = 'AuthToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-      router.push('/login');
+      window.location.reload();
     } else {
       router.push('/login');
     }

@@ -9,7 +9,7 @@ export default function page({ params }: { params: { id: number } }) {
 
   return (
     <>
-    <Box sx={{padding: 3,}}>
+    <Box sx={{paddingLeft: 20, paddingRight: 20}}>
         <ProductDetail id={params.id} />
     </Box>
     </>
